@@ -15,28 +15,34 @@ struct AddProductView: View {
     @State private var productDescription = ""
     @State private var productProvider = ""
     @State private var productPrice = ""
-
+    
     var body: some View {
-        NavigationView {
-            Form {
-                TextField("Product Name", text: $productName)
-                TextField("Description", text: $productDescription)
-                TextField("Provider", text: $productProvider)
-                TextField("Price", text: $productPrice)
-                    .keyboardType(.decimalPad)
-            }
-            .navigationTitle("Add Product")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
+        ZStack {
+            NavigationView {
+                Form {
+                    TextField("Product Name", text: $productName)
+                    TextField("Description", text: $productDescription)
+                    TextField("Provider", text: $productProvider)
+                    TextField("Price", text: $productPrice)
+                        .keyboardType(.decimalPad)
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        addProduct()
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Add New Product")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(Color("Color1"))
                     }
-                    .disabled(productName.isEmpty || productPrice.isEmpty)
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Save") {
+                            addProduct()
+                        }
+                        .disabled(productName.isEmpty || productPrice.isEmpty)
+                    }
                 }
             }
         }

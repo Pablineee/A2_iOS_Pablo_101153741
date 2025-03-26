@@ -71,6 +71,7 @@ struct ContentView: View {
             }
             Text("Select a Product")
         }
+        .background(Color("test"))
         .sheet(isPresented: $showingAddProduct) {
             AddProductView()
                 .environment(\.managedObjectContext, viewContext)
