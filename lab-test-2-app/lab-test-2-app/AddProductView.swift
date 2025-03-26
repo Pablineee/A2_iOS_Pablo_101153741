@@ -19,29 +19,55 @@ struct AddProductView: View {
     var body: some View {
         ZStack {
             NavigationView {
-                Form {
-                    TextField("Product Name", text: $productName)
-                    TextField("Description", text: $productDescription)
-                    TextField("Provider", text: $productProvider)
-                    TextField("Price", text: $productPrice)
-                        .keyboardType(.decimalPad)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("Add New Product")
-                            .font(.system(size: 22, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("Color1"))
+                VStack {
+                    Form {
+                        Text("Product Name")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                        TextField("e.g., 55\" 4K Television" , text: $productName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.top, 5)
+                            .padding(.bottom, 8)
+                        Text("Description")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                        TextField("Detailed product description", text: $productDescription)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.top, 5)
+                            .padding(.bottom, 8)
+                        Text("Provider")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                        TextField("Manufacturer", text: $productProvider)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.top, 5)
+                            .padding(.bottom, 8)
+                        Text("Price")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                        TextField("$", text: $productPrice)
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.top, 5)
+                            .padding(.bottom, 8)
                     }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Cancel") {
-                            dismiss()
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("Add New Product")
+                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .foregroundColor(Color("Color1"))
                         }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Save") {
-                            addProduct()
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancel") {
+                                dismiss()
+                            }
                         }
-                        .disabled(productName.isEmpty || productPrice.isEmpty)
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Save") {
+                                addProduct()
+                            }
+                            .disabled(productName.isEmpty || productPrice.isEmpty)
+                        }
                     }
                 }
             }
