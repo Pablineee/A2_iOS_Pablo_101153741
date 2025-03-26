@@ -11,17 +11,29 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var showingAddProduct = false
-    // @State private var searchText = ""
-
+    @State private var searchText = ""
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Product.productName, ascending: true)],
-        animation: .default)
-    private var products: FetchedResults<Product>
+        animation: .default
+    ) private var products: FetchedResults<Product>
+
+
+    var filteredProducts: [Product] {
+        if searchText.isEmpty {
+            return Array(products)
+        } else {
+            return products.filter {
+                ($0.productName ?? "").localizedCaseInsensitiveContains(searchText) ||
+                ($0.productDescription ?? "").localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(products) { product in
+                ForEach(filteredProducts) { product in
                     NavigationLink {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(product.productName ?? "Unnamed Product")
@@ -46,6 +58,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteProduct)
             }
+            .searchable(text: $searchText, prompt: "Search products")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
