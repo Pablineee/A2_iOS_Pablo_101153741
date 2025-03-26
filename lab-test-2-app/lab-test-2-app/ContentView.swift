@@ -36,20 +36,27 @@ struct ContentView: View {
                 ForEach(filteredProducts) { product in
                     NavigationLink {
                         VStack(alignment: .leading, spacing: 4) {
+                            Image("productDefault")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 300)
+                                .frame(maxWidth: .infinity)
+                                .clipped()
                             Text(product.productName ?? "Unnamed Product")
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                .font(.system(size: 30, weight: .semibold, design: .rounded))
                             Text(product.productDescription ?? "")
-                                .font(.system(size: 16))
+                                .font(.system(size: 20))
                                 .foregroundColor(.gray)
                             Text("SKU: " + String(product.productId))
-                                .font(.system(size: 14))
+                                .font(.system(size: 18))
                                 .foregroundColor(.gray)
                             Text(product.productProvider ?? "")
-                                .font(.system(size: 14))
+                                .font(.system(size: 18))
                                 .foregroundColor(.gray)
                             Text(formatPrice(product.productPrice))
-                                .font(.system(size: 16, weight: .bold))
+                                .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(Color("Color2"))
+                                .padding(.bottom, 200)
                         }
 
                     } label: {
