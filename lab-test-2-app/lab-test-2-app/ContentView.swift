@@ -21,12 +21,28 @@ struct ContentView: View {
             List {
                 ForEach(products) { product in
                     NavigationLink {
-                        Text("Product at \(product.productName!)")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(product.productName ?? "Unnamed Product")
+                                .font(.headline)
+                            Text(product.productDescription ?? "")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text("SKU: " + String(product.productId))
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text(product.productProvider ?? "")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text("$" + String(product.productPrice))
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+
                     } label: {
                         Text(product.productName!)
                     }
                 }
-                // .onDelete(perform: deleteProduct)
+                .onDelete(perform: deleteProduct)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -45,7 +61,7 @@ struct ContentView: View {
     private func addProduct() {
         withAnimation {
             let newProduct = Product(context: viewContext)
-            newProduct.productId = Int32.random(in: 100...999)
+            newProduct.productId = Int32.random(in: 1000000...9999999)
             newProduct.productName = "Product Name"
             newProduct.productDescription = "Product Description"
             newProduct.productPrice = 9.99
@@ -60,18 +76,16 @@ struct ContentView: View {
         }
     }
 
-//    private func deleteProduct(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { items[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
+    private func deleteProduct(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { products[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 }
