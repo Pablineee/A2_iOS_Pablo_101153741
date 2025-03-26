@@ -33,7 +33,7 @@ struct ContentView: View {
                             Text(product.productProvider ?? "")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
-                            Text("$" + String(product.productPrice))
+                            Text(formatPrice(product.productPrice))
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -87,5 +87,9 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    private func formatPrice(_ price: Double) -> String {
+        String(format: "$%.2f", price)
     }
 }
