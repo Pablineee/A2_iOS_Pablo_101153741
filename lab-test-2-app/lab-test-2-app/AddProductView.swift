@@ -22,38 +22,44 @@ struct AddProductView: View {
                 VStack {
                     Form {
                         Text("Product Name")
-                                .foregroundColor(.black)
+                            .foregroundColor(.color2)
                                 .fontWeight(.semibold)
                         TextField("e.g., 55\" 4K Television" , text: $productName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.top, 5)
-                            .padding(.bottom, 8)
+                            .padding(.top, 2)
+                            .padding(.bottom, 5)
                         Text("Description")
-                                .foregroundColor(.black)
+                                .foregroundColor(.color2)
                                 .fontWeight(.semibold)
                         TextField("Detailed product description", text: $productDescription)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.top, 5)
-                            .padding(.bottom, 8)
+                            .padding(.top, 2)
+                            .padding(.bottom, 5)
                         Text("Provider")
-                                .foregroundColor(.black)
+                                .foregroundColor(.color2)
                                 .fontWeight(.semibold)
                         TextField("Manufacturer", text: $productProvider)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.top, 5)
-                            .padding(.bottom, 8)
+                            .padding(.top, 2)
+                            .padding(.bottom, 5)
                         Text("Price")
-                                .foregroundColor(.black)
+                                .foregroundColor(.color2)
                                 .fontWeight(.semibold)
                         TextField("$", text: $productPrice)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.top, 5)
-                            .padding(.bottom, 8)
+                            .padding(.top, 2)
+                            .padding(.bottom, 5)
+                        Image("productDefault")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 300)
+                            .frame(maxWidth: .infinity)
+                            .clipped()
                     }
                     .toolbar {
                         ToolbarItem(placement: .principal) {
-                            Text("Add New Product")
+                            Text("Add Product")
                                 .font(.system(size: 22, weight: .bold, design: .rounded))
                                 .foregroundColor(Color("Color1"))
                         }
@@ -68,7 +74,7 @@ struct AddProductView: View {
                             }
                             .disabled(productName.isEmpty || productPrice.isEmpty)
                         }
-                    }
+                    }.padding(.top, -40)
                 }
             }
         }

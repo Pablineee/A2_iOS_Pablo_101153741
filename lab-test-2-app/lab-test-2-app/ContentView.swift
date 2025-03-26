@@ -45,6 +45,7 @@ struct ContentView: View {
                             Text(product.productName ?? "Unnamed Product")
                                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                                 .padding(.top, 150)
+                                .foregroundColor(.color2)
                             Text(product.productDescription ?? "")
                                 .font(.system(size: 20))
                                 .foregroundColor(.gray)
@@ -56,7 +57,7 @@ struct ContentView: View {
                                 .foregroundColor(.gray)
                             Text(formatPrice(product.productPrice))
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(Color("Color2"))
+                                .foregroundColor(.color2)
                         }
                         .padding(40)
 
