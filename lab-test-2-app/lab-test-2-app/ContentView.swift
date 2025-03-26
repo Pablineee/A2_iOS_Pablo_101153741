@@ -10,6 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var showingAddProduct = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Product.productName, ascending: true)],
@@ -49,13 +50,18 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addProduct) {
+                    Button(action: { showingAddProduct = true }) {
                         Label("Add Product", systemImage: "plus")
                     }
                 }
             }
             Text("Select a Product")
         }
+        .sheet(isPresented: $showingAddProduct) {
+            AddProductView()
+                .environment(\.managedObjectContext, viewContext)
+        }
+
     }
 
     private func addProduct() {
