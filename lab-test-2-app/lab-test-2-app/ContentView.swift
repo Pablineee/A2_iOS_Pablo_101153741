@@ -37,19 +37,19 @@ struct ContentView: View {
                     NavigationLink {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(product.productName ?? "Unnamed Product")
-                                .font(.headline)
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                             Text(product.productDescription ?? "")
-                                .font(.subheadline)
+                                .font(.system(size: 16))
                                 .foregroundColor(.gray)
                             Text("SKU: " + String(product.productId))
-                                .font(.subheadline)
+                                .font(.system(size: 14))
                                 .foregroundColor(.gray)
                             Text(product.productProvider ?? "")
-                                .font(.subheadline)
+                                .font(.system(size: 14))
                                 .foregroundColor(.gray)
                             Text(formatPrice(product.productPrice))
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(Color("Color2"))
                         }
 
                     } label: {
@@ -71,7 +71,6 @@ struct ContentView: View {
             }
             Text("Select a Product")
         }
-        .background(Color("test"))
         .sheet(isPresented: $showingAddProduct) {
             AddProductView()
                 .environment(\.managedObjectContext, viewContext)
