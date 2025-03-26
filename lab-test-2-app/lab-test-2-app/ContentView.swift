@@ -11,6 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var showingAddProduct = false
+    // @State private var searchText = ""
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Product.productName, ascending: true)],
@@ -62,24 +63,6 @@ struct ContentView: View {
                 .environment(\.managedObjectContext, viewContext)
         }
 
-    }
-
-    private func addProduct() {
-        withAnimation {
-            let newProduct = Product(context: viewContext)
-            newProduct.productId = Int32.random(in: 1000000...9999999)
-            newProduct.productName = "Product Name"
-            newProduct.productDescription = "Product Description"
-            newProduct.productPrice = 9.99
-            newProduct.productProvider = "Product Provider"
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
     }
 
     private func deleteProduct(offsets: IndexSet) {
