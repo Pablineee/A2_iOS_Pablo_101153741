@@ -1,6 +1,6 @@
 # iOS Product Management App
 
-A product management system implemented with th use of Swift, SwiftUI, and Core Data.
+A product management system implemented with the use of Swift, SwiftUI, and Core Data.
 
 
 ## Screenshots
