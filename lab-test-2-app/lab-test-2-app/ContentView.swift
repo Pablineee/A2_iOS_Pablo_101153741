@@ -76,6 +76,7 @@ struct ContentView: View {
                     } label: {
                         Text(product.productName!)
                     }
+                    .navigationBarBackButtonHidden(true) // Hide 'Back' button in navigation bar
                 }
                 .onDelete(perform: deleteProduct)
             }
@@ -97,7 +98,6 @@ struct ContentView: View {
                 .environment(\.managedObjectContext, viewContext)
         }
         .background(.color1)
-
     }
 
     private func deleteProduct(offsets: IndexSet) {
