@@ -32,9 +32,21 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
+            LinearGradient(
+                gradient: Gradient(colors: [.white, .blue]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
             List {
                 ForEach(filteredProducts) { product in
                     NavigationLink {
+                        LinearGradient(
+                            gradient: Gradient(colors: [.white, .blue]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                        .ignoresSafeArea()
                         VStack(alignment: .leading, spacing: 4) {
                             Image("productDefault")
                                 .resizable()
@@ -84,6 +96,7 @@ struct ContentView: View {
             AddProductView()
                 .environment(\.managedObjectContext, viewContext)
         }
+        .background(.color1)
 
     }
 
