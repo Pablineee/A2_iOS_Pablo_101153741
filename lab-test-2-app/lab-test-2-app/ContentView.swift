@@ -74,7 +74,17 @@ struct ContentView: View {
                         .padding(40)
 
                     } label: {
-                        Text(product.productName!)
+                        VStack {
+                            Text(product.productName!)
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Text(product.productDescription!)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
                     }
                     .navigationBarBackButtonHidden(true) // Hide 'Back' button in navigation bar
                 }
